@@ -16,6 +16,7 @@ define(function(){
 		height: HEIGHT,
 		width: WIDTH,
 		board: board,
-		next: null
+		falling: null,
+		fallingType: null
 	};
 });
