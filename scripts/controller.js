@@ -25,8 +25,6 @@ define(['model', 'view'], function(model, view){
 			case 'T':
 				model.falling = [[0,M-1],[0,M],[1,M],[0,M+1]];
 				break;
-			default:
-				throw "wat";
 		}
 	};
 	var fall = function(){
@@ -41,8 +39,29 @@ define(['model', 'view'], function(model, view){
 			});
 			model.falling = null;
 		}
+		view.update();
 	};
-	var gap = 0; // how many frames per gravity tick
+	var moveLeft = function(){
+		if(!model.falling) return;
+		if(model.falling.every(function(b){
+			return b[1]>0 && !model.board[b[0]][b[1]-1];
+		}))
+		{
+			model.falling = model.falling.map(function(b){ return [b[0], b[1]-1]; });
+			view.update();
+		}
+	};
+	var moveRight = function(){
+		if(!model.falling) return;
+		if(model.falling.every(function(b){
+			return b[1]<model.width-1 && !model.board[b[0]][b[1]+1];
+		}))
+		{
+			model.falling = model.falling.map(function(b){return [b[0], b[1]+1]; });
+			view.update();
+		}
+	};
+	var gap = 30; // how many frames per gravity tick
 	var remaining=gap;
 	var tick = function(){
 		var lost = false;
@@ -50,6 +69,7 @@ define(['model', 'view'], function(model, view){
 		{
 			spawnNew();
 			lost = !model.falling.every(function(c){ return !model.board[c[0]][c[1]]; });
+			view.update();
 		}
 
 		if(!lost){
@@ -60,7 +80,6 @@ define(['model', 'view'], function(model, view){
 			}
 		}
 
-		view.update();
 		if(lost)
 		{
 			clearInterval(interval);
@@ -69,4 +88,9 @@ define(['model', 'view'], function(model, view){
 	};
 	var interval= setInterval(tick, 32);
 	tick();
+	return {
+		left: moveLeft,
+		right: moveRight,
+		down: fall
+	};
 });

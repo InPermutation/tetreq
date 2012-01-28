@@ -1,3 +1,3 @@
-require(['jquery', 'model', 'view', 'controller'], function($, model, view, controller){
+require(['jquery', 'model', 'view', 'controller', 'input'], function($){
 		$('body').tetreq();
 });
