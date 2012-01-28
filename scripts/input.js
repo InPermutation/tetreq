@@ -15,6 +15,10 @@ define(['jquery', 'controller'], function($, controller){
 				case 40: // down arrow
 					controller.down();
 					break;
+				case 87:
+				case 38:
+					controller.clockwise();
+					break;
 			}
 		})
 	});

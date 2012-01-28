@@ -73,6 +73,28 @@ define(['model', 'view'], function(model, view){
 			view.update();
 		}
 	};
+	var rotate = function(){
+		var topleft = model.falling.reduce(function(p,c,ix,rg){
+			return [ Math.min(p[0], c[0]), Math.min(p[1], c[1])];
+		}, [model.height, model.width]);
+		var translate = model.falling.map(function(e){
+			return [e[0]-topleft[0], e[1]-topleft[1]];
+		});
+		var me = model.fallingType == 'I'? 4 : (model.fallingType=='O'?2:3);
+		var rotate = translate.map(function(e){
+			return [1-(e[1]-(me-2)), e[0]];
+		});
+		var deTranslate = rotate.map(function(e){
+			return [e[0]+topleft[0], e[1]+topleft[1]];
+		});
+		if(deTranslate.every(function(e){
+			return e[0] < model.height &&
+				e[1] < model.width &&
+				!model.board[e[0]][e[1]];
+		}))
+			model.falling = deTranslate;
+		view.update();
+	};
 	var gap = 30; // how many frames per gravity tick
 	var remaining=gap;
 	var tick = function(){
@@ -103,6 +125,7 @@ define(['model', 'view'], function(model, view){
 	return {
 		left: moveLeft,
 		right: moveRight,
-		down: fall
+		down: fall,
+		clockwise: rotate
 	};
 });
