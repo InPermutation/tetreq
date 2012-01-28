@@ -126,6 +126,7 @@ define(['model', 'view'], function(model, view){
 		left: moveLeft,
 		right: moveRight,
 		down: fall,
-		clockwise: rotate
+		clockwise: rotate,
+		drop: function(){ while(model.falling) fall(); }
 	};
 });
