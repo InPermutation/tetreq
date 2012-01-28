@@ -27,6 +27,17 @@ define(['model', 'view'], function(model, view){
 				break;
 		}
 	};
+	var clearRows = function(){
+		model.board = model.board.filter(function(ro){
+				return ro.some(function(c){ return !c; });
+			});
+		while(model.board.length < model.height)
+		{
+			var nuro = [];
+			while(nuro.length < model.width) nuro.push('');
+			model.board.unshift(nuro);
+		}
+	};
 	var fall = function(){
 		if(model.falling.every(function(t){
 			return t[0]+1<model.height && !(model.board[t[0]+1][t[1]]);
@@ -38,6 +49,7 @@ define(['model', 'view'], function(model, view){
 				model.board[b[0]][b[1]] = model.fallingType;
 			});
 			model.falling = null;
+			clearRows();
 		}
 		view.update();
 	};
