@@ -1,24 +1,35 @@
 define(['jquery', 'model'], function($, model){
 	var tetreq = $("<div class='board'></div>")
+	var board = model.board;
 	$.fn.tetreq = function(){
 		this.append(tetreq);
+		for(var y=0;y<board.length;y++)
+		{
+			var row = $('<div></div>')
+			for(var x=0;x<board[y].length;x++)
+			{
+				var cel = $("<div class='cell'></div>");
+				row.append(cel);
+			}
+			tetreq.append(row);
+		}
 	}
 
 	return {
         	update: function(){
-			tetreq.empty();
-			var board = model.board;
+			for(var piece in model.pieces)
+				$('.cell', tetreq).removeClass('block' + model.pieces[piece]);
 			for(var y=0;y<board.length;y++)
 			{
-				var row = $('<div></div>')
+				var els = $(tetreq).children();
+				if(els.length==0) break;
+				var row = els[y];
+				var children = $(row).children();
 				for(var x=0;x<board[y].length;x++)
 				{
-					var cel = $("<div class='cell'></div>");
 					if(board[y][x])
-						cel.addClass('block' + board[y][x]);
-					row.append(cel);
+						$(children[x]).addClass('block' + board[y][x]);
 				}
-				tetreq.append(row);
 			}
 		}
 	};

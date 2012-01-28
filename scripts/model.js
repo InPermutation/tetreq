@@ -12,6 +12,7 @@ define(function(){
 	}
 
 	return {
+		pieces: 'IJLOSZT'.split(''),
 		height: HEIGHT,
 		width: WIDTH,
 		board: board,

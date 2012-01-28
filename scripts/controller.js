@@ -3,5 +3,5 @@ define(['model', 'view'], function(model, view){
 		view.update();
 	};
 	tick();
-	return setInterval(tick, 320);
+	return setInterval(tick, 32);
 });
