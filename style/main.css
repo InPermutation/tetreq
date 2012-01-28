@@ -1,7 +1,7 @@
 body { background-color: #077; }
 .board,.cell { display: inline-block; }
-.board { background-color: black; border: 10px solid #aa0; width: auto; }
-.cell { width: 8px; height: 8px; border: 1px solid black; background-color: black; }
+.board { background-color: black; border: 20px solid #aa0; }
+.cell { width: 18px; height: 18px; border: 1px solid black; border-radius: 4px; }
 .blockI { background-color: #0ff; }
 .blockJ { background-color: #00f; }
 .blockL { background-color: #f70; }
