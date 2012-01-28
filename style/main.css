@@ -1,1 +1,11 @@
 body { background-color: #077; }
+.board,.cell { display: inline-block; }
+.board { background-color: black; border: 10px solid #aa0; width: auto; }
+.cell { width: 8px; height: 8px; border: 1px solid black; background-color: black; }
+.blockI { background-color: #0ff; }
+.blockJ { background-color: #00f; }
+.blockL { background-color: #f70; }
+.blockO { background-color: #ff0; }
+.blockS { background-color: #0f0; }
+.blockZ { background-color: #f00; }
+.blockT { background-color: #f0f; }
