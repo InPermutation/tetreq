@@ -17,6 +17,8 @@ define(function(){
 		width: WIDTH,
 		board: board,
 		falling: null,
-		fallingType: null
+		fallingType: null,
+		cleared: 0,
+		score: 0
 	};
 });

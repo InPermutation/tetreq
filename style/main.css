@@ -9,3 +9,5 @@ body { background-color: #077; }
 .blockS { background-color: #0f0; }
 .blockZ { background-color: #f00; }
 .blockT { background-color: #f0f; }
+
+.score,.cleared { background-color: black; color: yellow; width: 240px; text-align:center; }

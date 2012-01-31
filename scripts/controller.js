@@ -31,6 +31,10 @@ define(['model', 'view'], function(model, view){
 		model.board = model.board.filter(function(ro){
 				return ro.some(function(c){ return !c; });
 			});
+		var lines = model.height - model.board.length;
+		model.cleared += lines;
+		var scores = [0, 100, 300, 500, 800];
+		model.score += scores[lines];
 		while(model.board.length < model.height)
 		{
 			var nuro = [];
