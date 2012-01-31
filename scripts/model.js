@@ -18,6 +18,8 @@ define(function(){
 		board: board,
 		falling: null,
 		fallingType: null,
+		next: null,
+		nextType: null,
 		cleared: 0,
 		score: 0
 	};

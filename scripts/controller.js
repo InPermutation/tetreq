@@ -2,28 +2,30 @@ define(['model', 'view'], function(model, view){
 	var spawnNew = function(){
 		var piece = model.pieces[Math.floor(Math.random() * model.pieces.length)];
 		var M = Math.floor(model.width/2);
-		model.fallingType = piece;
+		model.fallingType = model.nextType;
+		model.falling = model.next;
+		model.nextType = piece;
 		switch(piece){
 			case 'I':
-				model.falling = [[0,M-1],[0,M],[0,M+1],[0,M+2]];
+				model.next = [[0,M-1],[0,M],[0,M+1],[0,M+2]];
 				break;
 			case 'J':
-				model.falling = [[0,M-1],[0,M],[0,M+1],[1,M+1]];
+				model.next = [[0,M-1],[0,M],[0,M+1],[1,M+1]];
 				break;
 			case 'L':
-				model.falling = [[1,M-1],[0,M-1],[0,M],[0,M+1]];
+				model.next = [[1,M-1],[0,M-1],[0,M],[0,M+1]];
 				break;
 			case 'O':
-				model.falling = [[1,M],[0,M],[1,M+1],[0,M+1]];
+				model.next = [[1,M],[0,M],[1,M+1],[0,M+1]];
 				break;
 			case 'S':
-				model.falling = [[1,M-1],[1,M],[0,M],[0,M+1]];
+				model.next = [[1,M-1],[1,M],[0,M],[0,M+1]];
 				break;
 			case 'Z':
-				model.falling = [[0,M-1],[0,M],[1,M],[1,M+1]];
+				model.next = [[0,M-1],[0,M],[1,M],[1,M+1]];
 				break;
 			case 'T':
-				model.falling = [[0,M-1],[0,M],[1,M],[0,M+1]];
+				model.next = [[0,M-1],[0,M],[1,M],[0,M+1]];
 				break;
 		}
 	};
@@ -105,10 +107,10 @@ define(['model', 'view'], function(model, view){
 	var remaining=gap;
 	var tick = function(){
 		var lost = false;
-		if(model.falling == null)
+		while(model.falling == null)
 		{
 			spawnNew();
-			lost = !model.falling.every(function(c){ return !model.board[c[0]][c[1]]; });
+			lost = model.falling && !model.falling.every(function(c){ return !model.board[c[0]][c[1]]; });
 			view.update();
 		}
 
