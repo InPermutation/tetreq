@@ -41,6 +41,7 @@ define(['model', 'view'], function(model, view){
 			while(nuro.length < model.width) nuro.push('');
 			model.board.unshift(nuro);
 		}
+		gap = 30 - 2 * Math.floor(model.cleared / 10);
 	};
 	var fall = function(){
 		if(model.falling.every(function(t){
@@ -56,6 +57,7 @@ define(['model', 'view'], function(model, view){
 			clearRows();
 		}
 		view.update();
+		remaining=gap;
 	};
 	var moveLeft = function(){
 		if(!model.falling) return;
@@ -113,7 +115,6 @@ define(['model', 'view'], function(model, view){
 		if(!lost){
 			remaining--;
 			if(remaining<=0){
-				remaining=gap;
 				fall();
 			}
 		}
