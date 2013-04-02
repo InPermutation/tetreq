@@ -1,0 +1,9 @@
+{
+    "name": "Tetreq",
+    "description": "Tetris clone using RequireJS",
+    "launch_path": "/",
+    "developer": {
+        "name": "Jacob Krall",
+        "url": "https://github.com/krallja"
+    }
+}
