@@ -22,7 +22,12 @@ body { background-color: #077; margin:0; }
     color: yellow;
     width: 60%;
     text-align:center;
+    border-left: 3px solid #aa0;
+    border-right: 3px solid #aa0;
  }
+.cleared {
+    border-bottom: 3px solid #aa0;
+}
 .next {
     position: absolute;
     left: 70%;
