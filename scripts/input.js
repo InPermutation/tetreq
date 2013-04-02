@@ -1,4 +1,4 @@
-define(['jquery', 'controller'], function($, controller){
+define(['jquery', 'controller', 'view', 'model'], function($, controller, view, model){
 	$(function(){
 		$('body').keydown(function(ev){
 			var keycode = ev.keyCode;
@@ -23,6 +23,8 @@ define(['jquery', 'controller'], function($, controller){
 					controller.drop();
 					break;
 			}
-		})
+		});
+
+        $(view.controls.reset).click(model.reset);
 	});
 });

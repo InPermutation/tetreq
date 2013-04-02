@@ -1,18 +1,16 @@
 define(['jquery', 'model'], function($, model){
-	var tetreq = $("<div class='board'></div>");
-	var score = $("<div class='score'></div>");
-	var cleared = $("<div class='cleared'></div>");
-	var next = $("<div class='next'></div>");
-
-    var reset = $("<div class='reset'>Reset</div>").click(model.reset);
+    var controls = {
+	    tetreq: $("<div class='board'></div>"),
+	    score: $("<div class='score'></div>"),
+	    cleared: $("<div class='cleared'></div>"),
+	    next: $("<div class='next'></div>"),
+        reset: $("<div class='reset'>Reset</div>")
+    };
 
 	$.fn.tetreq = function(){
-		this.append(tetreq);
-		this.append(score);
-		this.append(cleared);
-		this.append(next);
-        this.append(reset);
-		for(var y=0;y<model.board.length;y++)
+        for(k in controls)
+            this.append(controls[k]);
+        for(var y=0;y<model.board.length;y++)
 		{
 			var row = $('<div></div>')
 			for(var x=0;x<model.board[y].length;x++)
@@ -20,7 +18,7 @@ define(['jquery', 'model'], function($, model){
 				var cel = $("<div class='cell'></div>");
 				row.append(cel);
 			}
-			tetreq.append(row);
+			controls.tetreq.append(row);
 		}
 		for(var y=0;y<2;y++)
 		{
@@ -30,19 +28,19 @@ define(['jquery', 'model'], function($, model){
 				var cel = $("<div class='cell'></div>");
 				row.append(cel);
 			}
-			next.append(row);
+			controls.next.append(row);
 		}
 	}
 
 	return {
         	update: function(){
-			score.text("Score: " + model.score);
-			cleared.text("Cleared: " + model.cleared);
+			controls.score.text("Score: " + model.score);
+			controls.cleared.text("Cleared: " + model.cleared);
 			for(var piece in model.pieces){
-				$('.cell', tetreq).removeClass('block' + model.pieces[piece]);
-				$('.cell', next).removeClass('block' + model.pieces[piece]);
+				$('.cell', controls.tetreq).removeClass('block' + model.pieces[piece]);
+				$('.cell', controls.next).removeClass('block' + model.pieces[piece]);
 			}
-			var els = $(tetreq).children();
+			var els = $(controls.tetreq).children();
 			if(els.length==0) return;
 			for(var y=0;y<model.board.length;y++)
 			{
@@ -62,7 +60,7 @@ define(['jquery', 'model'], function($, model){
 				var child = children[cel[1]];
 				$(child).addClass('block' + model.fallingType);
 			}
-			var els = next.children();
+			var els = controls.next.children();
 			var M = Math.floor(model.width / 2);
 			for(var y=0;y<2;y++)
 			{
@@ -75,6 +73,7 @@ define(['jquery', 'model'], function($, model){
 						$(children[b[1]-M+1]).addClass('block'+ model.nextType);
 				}
 			}
-		}
+		},
+        controls: controls
 	};
 });
