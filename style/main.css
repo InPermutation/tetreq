@@ -1,10 +1,11 @@
 body { background-color: #077; margin:0; }
 #board { max-width: 800px; position: relative; }
 .board { width: 60%; height:80%; }
-.next { width: 24%; height: 8%; }
+.next { width: 20%; height: 8%; }
+.reset { width: 20%; height: 4%; }
 .board,.cell { display: inline-block; }
-.board,.next { background-color: black; border: 3px solid #aa0; border-radius: 2px; }
-.next { width: 20%; }
+.board,.next,.reset { background-color: black; border: 3px solid #aa0; border-radius: 2px; color: #eee; text-align: center; }
+.reset:hover { background-color: #444; color: #fff; }
 .cell { border-radius: 4px; }
 .board .cell { width: 10%; height: 5%; }
 .next .cell { width: 25%; height: 50%; }
@@ -27,3 +28,8 @@ body { background-color: #077; margin:0; }
     left: 70%;
     top: 10%;
  }
+ .reset {
+     position: absolute;
+     left: 70%;
+     top: 20%;
+}

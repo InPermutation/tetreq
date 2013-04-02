@@ -43,7 +43,7 @@ define(['model', 'view'], function(model, view){
 			while(nuro.length < model.width) nuro.push('');
 			model.board.unshift(nuro);
 		}
-		gap = 30 - 2 * Math.floor(model.cleared / 10);
+		model.period = 30 - 2 * Math.floor(model.cleared / 10);
 	};
 	var fall = function(){
 		if(model.falling.every(function(t){
@@ -59,7 +59,7 @@ define(['model', 'view'], function(model, view){
 			clearRows();
 		}
 		view.update();
-		remaining=gap;
+		model.ticks = model.period;
 	};
 	var moveLeft = function(){
 		if(!model.falling) return;
@@ -103,9 +103,8 @@ define(['model', 'view'], function(model, view){
 			model.falling = deTranslate;
 		view.update();
 	};
-	var gap = 30; // how many frames per gravity tick
-	var remaining=gap;
 	var tick = function(){
+        if(model.stopped) return;
 		var lost = false;
 		while(model.falling == null)
 		{
@@ -115,15 +114,15 @@ define(['model', 'view'], function(model, view){
 		}
 
 		if(!lost){
-			remaining--;
-			if(remaining<=0){
+			model.ticks--;
+			if(model.ticks<=0){
 				fall();
 			}
 		}
 
 		if(lost)
 		{
-			clearInterval(interval);
+            model.stopped = true;
 			alert("You lose!");
 		}
 	};

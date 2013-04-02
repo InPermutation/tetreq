@@ -3,11 +3,15 @@ define(['jquery', 'model'], function($, model){
 	var score = $("<div class='score'></div>");
 	var cleared = $("<div class='cleared'></div>");
 	var next = $("<div class='next'></div>");
+
+    var reset = $("<div class='reset'>Reset</div>").click(model.reset);
+
 	$.fn.tetreq = function(){
 		this.append(tetreq);
 		this.append(score);
 		this.append(cleared);
 		this.append(next);
+        this.append(reset);
 		for(var y=0;y<model.board.length;y++)
 		{
 			var row = $('<div></div>')
