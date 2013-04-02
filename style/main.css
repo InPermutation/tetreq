@@ -1,7 +1,14 @@
 body { background-color: #077; margin:0; }
+#board { max-width: 800px; position: relative; }
+.board { width: 60%; height:80%; }
+.next { width: 24%; height: 8%; }
 .board,.cell { display: inline-block; }
-.board,.next { background-color: black; border: 20px solid #aa0; }
-.cell { width: 18px; height: 18px; border: 1px solid black; border-radius: 4px; }
+.board,.next { background-color: black; border: 3px solid #aa0; border-radius: 2px; }
+.next { width: 20%; }
+.cell { border-radius: 4px; }
+.board .cell { width: 10%; height: 5%; }
+.next .cell { width: 25%; height: 50%; }
+
 .blockI { background-color: #0ff; }
 .blockJ { background-color: #00f; }
 .blockL { background-color: #f70; }
@@ -9,5 +16,14 @@ body { background-color: #077; margin:0; }
 .blockS { background-color: #0f0; }
 .blockZ { background-color: #f00; }
 .blockT { background-color: #f0f; opacity: 30% }
-.score,.cleared { background-color: black; color: yellow; width: 240px; text-align:center; }
-.next { position: absolute; left: 250px; top: 20px; }
+.score,.cleared {
+    background-color: black;
+    color: yellow;
+    width: 60%;
+    text-align:center;
+ }
+.next {
+    position: absolute;
+    left: 70%;
+    top: 10%;
+ }
