@@ -4,7 +4,11 @@ define(['jquery', 'model'], function($, model){
 	    score: $("<div class='score'></div>"),
 	    cleared: $("<div class='cleared'></div>"),
 	    next: $("<div class='next'></div>"),
-        reset: $("<div class='reset'>Reset</div>")
+        reset: $("<div class='reset'>Reset</div>"),
+        left: $("<div class='left'>&lt;</div>"),
+        rotate: $("<div class='rotate'>Rotate</div>"),
+        drop: $("<div class='drop'>Drop</div>"),
+        right: $("<div class='right'>&gt;</div>")
     };
 
 	$.fn.tetreq = function(){

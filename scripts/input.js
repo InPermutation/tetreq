@@ -26,5 +26,9 @@ define(['jquery', 'controller', 'view', 'model'], function($, controller, view, 
 		});
 
         $(view.controls.reset).click(model.reset);
+        $(view.controls.left).click(controller.left);
+        $(view.controls.right).click(controller.right);
+        $(view.controls.rotate).click(controller.clockwise);
+        $(view.controls.drop).click(controller.drop);
 	});
 });

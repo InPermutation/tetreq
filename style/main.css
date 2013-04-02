@@ -21,10 +21,23 @@ body { background-color: #077; margin:0; }
     background-color: black;
     color: yellow;
     width: 60%;
+    height: 2.5%;
     text-align:center;
     border-left: 3px solid #aa0;
     border-right: 3px solid #aa0;
  }
+.left,.right,.drop,.rotate{
+    background-color: #ccc;
+    color: black;
+    width: 12%;
+    height: 5%;
+    border: 3px solid black;
+    margin-right: 2%;
+    margin-top: 1%;
+    text-align: center;
+    display: inline-block;
+}
+
 .cleared {
     border-bottom: 3px solid #aa0;
 }
